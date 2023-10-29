@@ -26,3 +26,4 @@ user-agents==2.2.0
 whitenoise==6.0.0
 django-phonenumber-field==7.2.0
 phonenumbers==8.13.23
+gunicorn==21.2.0
