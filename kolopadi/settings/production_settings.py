@@ -25,13 +25,13 @@ DATABASES["default"] = dj_database_url.parse(
     conn_health_checks=True
 )
 
-DATABASES["default"]["NAME"] = get_env_variable("DATABASE_NAME", "porfolio")
-DATABASES["default"]["ENGINE"] = "django.db.backends.postgresql"
-DATABASES["default"]["POOL_OPTIONS"] = {
-    "POOL_SIZE": 20,
-    "MAX_OVERFLOW": 30,
-    "RECYCLE": 24 * 60 * 60,
-}
+# DATABASES["default"]["NAME"] = get_env_variable("DATABASE_NAME", "porfolio")
+# DATABASES["default"]["ENGINE"] = "django.db.backends.postgresql"
+# DATABASES["default"]["POOL_OPTIONS"] = {
+#     "POOL_SIZE": 20,
+#     "MAX_OVERFLOW": 30,
+#     "RECYCLE": 24 * 60 * 60,
+# }
 
 # SESSION_COOKIE_SECURE = True
 # SECURE_BROWSER_XSS_FILTER = True
