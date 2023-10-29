@@ -19,10 +19,14 @@ from kolopadi.settings.packages.resized_image_field import *
 from kolopadi.settings.packages.rest_framework_settings import *
 from kolopadi.settings.packages.simple_jwt_settings import *
 from kolopadi.settings.packages.spectular_settings import *
+
+
 from kolopadi.settings.packages.user_agent_settings import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# DEBUG = True
 
 
 # Quick-start development settings - unsuitable for production
@@ -140,4 +144,16 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "home.CustomUser"
 
-PHONENUMBER_DB_FORMAT = "NATIONAL"
+# PHONENUMBER_DB_FORMAT = "NATIONAL"
+
+STATIC_URL = "/assets/"
+
+STATICFILES_DIRS = [
+    BASE_DIR / "assets/",
+]
+
+STATIC_ROOT = BASE_DIR / "static_root"
+
+MEDIA_URL = "/uploads/"
+
+MEDIA_ROOT = get_env_variable("MEDIA_ROOT", BASE_DIR / "media")

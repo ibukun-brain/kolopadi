@@ -41,18 +41,6 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-STATIC_URL = "/assets/"
-
-STATICFILES_DIRS = [
-    BASE_DIR / "assets/",
-]
-
-STATIC_ROOT = BASE_DIR / "static_root"
-
-MEDIA_URL = "/uploads/"
-
-MEDIA_ROOT = get_env_variable("MEDIA_ROOT", BASE_DIR / "media")
-
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,

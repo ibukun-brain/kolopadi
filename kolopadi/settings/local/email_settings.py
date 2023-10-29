@@ -1,15 +1,19 @@
-from sinum.utils.settings import get_env_variable
+from kolopadi.utils.env_variable import get_env_variable
 
 # Sending email configuration
-EMAIL_HOST_USER = get_env_variable("ADMIN_EMAIL_ADDRESS", "contact@sinum.com")
+EMAIL_HOST_USER = get_env_variable(
+    "EMAIL_HOST_USER", "XXX"
+)
 
-EMAIL_HOST_PASSWORD = get_env_variable("ADMIN_EMAIL_PASSWORD", "")
+EMAIL_HOST_PASSWORD = get_env_variable("EMAIL_HOST_PASSWORD", "XXX")
 
-EMAIL_PORT = get_env_variable("EMAIL_PORT", 587)
+EMAIL_PORT = get_env_variable("EMAIL_PORT", "XXX")
 
-EMAIL_HOST = get_env_variable("EMAIL_HOST", "smtp.gmail.com")
+EMAIL_HOST = get_env_variable("EMAIL_HOST", "XXX")
 
-EMAIL_USE_TLS = True
+EMAIL_USE_SSL = True
+
+# EMAIL_USE_TLS = True production only
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
@@ -19,9 +23,4 @@ SERVER_EMAIL = EMAIL_HOST_USER
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-ADMINS = []
-for admin in get_env_variable("ADMINS", "-").split(", "):
-    if admin:
-        admin = tuple(admin.split(":", 1))
-        if len(admin) == 2:
-            ADMINS.append(admin)
+ADMINS = [(get_env_variable('ADMIN1', "XXX"), (get_env_variable('ADMIN2', 'XXX')))]
