@@ -4,7 +4,6 @@ black==22.3.0
 coverage==6.3.2
 flake8==4.0.1
 ipython==8.0.1
-isort==5.10.1
 autopep8
 faker
 isort
