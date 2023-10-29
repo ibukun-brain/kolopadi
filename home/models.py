@@ -3,12 +3,10 @@ import uuid
 import auto_prefetch
 from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.core.validators import MinLengthValidator
 from django.db import models
 from django.utils import timezone
 from django_resized import ResizedImageField
-
-from django.core.validators import MinLengthValidator
-# from phonenumber_field.modelfields import PhoneNumberField
 
 from kolopadi.utils.choices import Gender, IdentityType, Status
 from kolopadi.utils.managers import CustomUserManager
@@ -16,6 +14,8 @@ from kolopadi.utils.media import MediaHelper
 from kolopadi.utils.models import TimeBasedModel
 from kolopadi.utils.strings import generate_ref_no
 from kolopadi.utils.validators import FileValidatorHelper
+
+# from phonenumber_field.modelfields import PhoneNumberField
 
 
 class CustomUser(TimeBasedModel, AbstractBaseUser, PermissionsMixin):
@@ -38,7 +38,7 @@ class CustomUser(TimeBasedModel, AbstractBaseUser, PermissionsMixin):
     )
     referral_code = models.CharField(max_length=10, blank=True, unique=True)
     date_joined = models.DateTimeField(default=timezone.now)
-    date_of_birth = models.DateField(blank=True, null=True)
+    date_of_birth = models.DateField()
     address = models.CharField(max_length=40, blank=True)
     gender = models.CharField(max_length=15, choices=Gender.choices)
     profile_pic = ResizedImageField(

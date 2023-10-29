@@ -38,3 +38,14 @@ class Status(models.TextChoices):
     Pending = ("Pending", "Pending")
     Verified = ("Verified", "Verified")
     Failed = ("Failed", "Failed")
+
+
+class SavingsFrequency(models.TextChoices):
+    Daily = ("daily", "Daily")
+    Weekly = ("weekly", "Weekly")
+    Monthly = ("monthly", "Monthly")
+
+
+class SavingsType(models.TextChoices):
+    Fixed = ("fixed", "Fixed")
+    Flexible = ("flexible", "Flexible")

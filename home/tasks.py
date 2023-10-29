@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.core.mail import send_mail
 from requests.exceptions import RequestException
 
 from home.flutterwave_utils import (
@@ -84,4 +86,16 @@ def user_wallet_transactions_task(
     return create_user_wallet_transactions(
         transactions=transactions,
         email=email,
+    )
+
+
+def send_email_task(url, user, email):
+    send_mail(
+        subject="Welcome to Kolopadi",
+        message=f"Hello {user}\n"
+        + "Thank you for choosing Kolopadi!\n"
+        + "Login into www.stakefair.io and discover "
+        + "the fantastic promotions that await you!\n",
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        recipient_list=[email],
     )

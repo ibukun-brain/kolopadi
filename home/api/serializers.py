@@ -1,3 +1,5 @@
+import threading
+
 from django.contrib.auth import get_user_model
 from django_user_agents.utils import get_user_agent
 from djoser.serializers import UserCreatePasswordRetypeSerializer, UserSerializer
@@ -6,6 +8,7 @@ from drf_spectacular.utils import extend_schema_field
 from rest_framework import serializers
 
 from home.models import CustomUser
+from home.tasks import send_email_task
 from referrals.models import Referral
 
 User = get_user_model()
@@ -19,6 +22,7 @@ class CustomUserCreatePasswordRetypeSerializer(UserCreatePasswordRetypeSerialize
         fields = [
             "first_name",
             "last_name",
+            "date_of_birth",
             "email",
             "mobile_no",
             "gender",
@@ -27,8 +31,15 @@ class CustomUserCreatePasswordRetypeSerializer(UserCreatePasswordRetypeSerialize
         ]
 
     def create(self, validated_data):
+        # request = self.context.get("request")
         referral_code = validated_data.pop("referral_code")
         new_user = super().create(validated_data)
+        thread = threading.Thread(
+            target=send_email_task,
+            args=[new_user.get_full_name(), validated_data.get("email")],
+            daemon=True,
+        )
+        thread.start()
         referrer = None
         if not referral_code or referral_code != "":
             try:

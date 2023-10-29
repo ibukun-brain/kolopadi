@@ -1,12 +1,16 @@
 import logging
 import threading
 
-from rest_framework import filters, generics, permissions
+from drf_spectacular.utils import extend_schema
+from rest_framework import filters, generics, permissions, status
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from home.api.custom_permissions import IsWalletOwnerOrReadOnly
 from home.tasks import user_wallet_transactions_task
 from wallets.api.serializers import (
     BankSerializer,
+    TransferSerializer,
     UserWalletSerializer,
     WalletTransactionSerializer,
 )
@@ -65,3 +69,27 @@ class TransactionListAPIView(generics.ListAPIView):
         )
         thread.start()
         return self.list(request, *args, **kwargs)
+
+
+class TransferAPIView(APIView):
+    permission_classes = [permissions.IsAuthenticated, IsWalletOwnerOrReadOnly]
+
+    @extend_schema(parameters=[TransferSerializer])
+    def post(self, request, format=None):
+        print(request.data)
+        serializer = TransferSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        # bank = Bank.objects.get(bank_code=transaction_details["bank_code"])
+        # beneficiary, _ = Beneficiary.objects.get_or_create(
+        #     wallet=request.user.wallet,
+        #     bank=bank,
+        #     account_name=transaction_details["account_name"],
+        #     account_number=transaction_details["account_number"],
+        # )
+        # if add_to_beneficiary == "True":
+        #     beneficiary.is_favourite = True
+        # beneficiary.save()

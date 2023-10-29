@@ -70,3 +70,12 @@ class WalletTransactionSerializer(serializers.ModelSerializer):
             "external_recipient_bank",
             "transfer_status",
         ]
+
+
+class TransferSerializer(serializers.Serializer):
+    amount = serializers.DecimalField(decimal_places=2, max_digits=11)
+    narration = serializers.CharField(max_length=100, allow_blank=True)
+    add_to_beneficiary = serializers.BooleanField(default=False)
+    account_name = serializers.CharField(max_length=100)
+    account_number = serializers.CharField(max_length=10)
+    bank_code = serializers.CharField(max_length=50)

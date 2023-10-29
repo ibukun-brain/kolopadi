@@ -1,5 +1,6 @@
 import auto_prefetch
 from django.db import models
+from django.utils.text import slugify
 
 from kolopadi.utils.managers import VisibleManager
 
@@ -45,3 +46,8 @@ class CategoryModel(TimeBasedModel):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.slug and self.name:
+            self.slug = slugify(self.name)
+        return super().save(*args, **kwargs)

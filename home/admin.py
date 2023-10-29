@@ -67,6 +67,7 @@ class UserAdmin(DefaultUserAdmin):
                 "fields": (
                     "first_name",
                     "last_name",
+                    "date_of_birth",
                     "email",
                     "mobile_no",
                     "gender",
