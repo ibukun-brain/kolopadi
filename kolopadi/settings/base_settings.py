@@ -51,14 +51,14 @@ INSTALLED_APPS = [
     "savings_wallets",
     "referrals",
     "wallets",
-    "ckeditor",
+    # "ckeditor",
     "corsheaders",
     "django_filters",
     "djoser",
     "geoip2",
     "rest_framework",
     "drf_spectacular",
-    "drf_spectacular_sidecar",
+    # "drf_spectacular_sidecar",
 ]
 
 GEOIP_PATH = BASE_DIR / "geoip"
