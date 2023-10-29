@@ -65,7 +65,7 @@ python manage.py loaddata ../data.json
 - Create a branch in your local pc but branching from the develop branch.
 
 ```sh
-git checkout -b SW-1/lowercased-short-description
+git checkout -b kolopadi-1/lowercased-short-description
 ```
 
 ### Dev complete
@@ -94,7 +94,7 @@ Pick a ticket on the [Github Repository](https://github.com/ibukun-brain/kolopad
 git clone https://github.com/ibukun-brain/kolopadi
 ```
 
-When creating a new branch, **ENSURE** that the branch name starts with the format **SSS-&lt;issue-no&gt;-&lt;short-description&gt;** e.g. **SW-1-project-setup** and the main branch is from develop. use the command below when creating a new branch.
+When creating a new branch, **ENSURE** that the branch name starts with the format **SSS-&lt;issue-no&gt;-&lt;short-description&gt;** e.g. **kolopadi-1-project-setup** and the main branch is from develop. use the command below when creating a new branch.
 
 ```
 git checkout develop
