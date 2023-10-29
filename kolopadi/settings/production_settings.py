@@ -11,7 +11,7 @@ SECRET_KEY = get_env_variable("SECRET_KEY", "XXXX")
 DEBUG = False
 # SECURITY WARNING: don't run with debug turned on in production!
 
-ALLOWED_HOSTS.append('.vercel.app')
+ALLOWED_HOSTS.append('*')
 
 INSTALLED_APPS.insert(5, "whitenoise.runserver_nostatic")
 # INSTALLED_APPS += [
