@@ -20,7 +20,7 @@ drf-spectacular-sidecar==2023.6.1
 Faker==18.10.1
 geoip2==4.7.0
 Pillow==9.5.0
-psycopg2==2.9.6
+psycopg2-binary==2.9.6
 redis==4.2.0
 user-agents==2.2.0
 whitenoise==6.0.0
