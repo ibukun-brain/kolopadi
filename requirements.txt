@@ -17,7 +17,6 @@ djangorestframework-simplejwt==5.2.2
 djoser==2.2.0
 drf-spectacular==0.26.3
 drf-spectacular-sidecar==2023.6.1
-Faker==18.10.1
 geoip2==4.7.0
 Pillow==9.5.0
 psycopg2-binary==2.9.6
