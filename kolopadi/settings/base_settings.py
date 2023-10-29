@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 
 from kolopadi.settings.packages.ckeditor import *
+from kolopadi.settings.packages.cors_origin_settings import *
 from kolopadi.settings.packages.djoser_settings import *
 from kolopadi.settings.packages.redis_settings import *
 from kolopadi.settings.packages.resized_image_field import *

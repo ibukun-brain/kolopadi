@@ -4,7 +4,7 @@ dj-database-url==1.2.0
 Django==3.2
 django-auto-prefetch==1.1.0
 # django-ckeditor==6.4.0
-django-cors-headers==4.2.0
+django-cors-headers==4.1.0
 django-crispy-forms==2.0
 django-filter==23.2
 django-redis==5.2.0
