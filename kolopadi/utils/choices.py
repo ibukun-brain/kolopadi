@@ -49,3 +49,13 @@ class SavingsFrequency(models.TextChoices):
 class SavingsType(models.TextChoices):
     Fixed = ("fixed", "Fixed")
     Flexible = ("flexible", "Flexible")
+
+
+class SavingsStatus(models.TextChoices):
+    Started = ("started", "Started")
+    Ended = ("ended", "Ended")
+
+
+class SavingsMethod(models.TextChoices):
+    Transfer = ("bank transfer", "Bank Transfer")
+    Card = ("card", "Card")

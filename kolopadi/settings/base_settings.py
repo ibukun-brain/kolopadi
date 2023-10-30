@@ -20,14 +20,12 @@ from kolopadi.settings.packages.resized_image_field import *
 from kolopadi.settings.packages.rest_framework_settings import *
 from kolopadi.settings.packages.simple_jwt_settings import *
 from kolopadi.settings.packages.spectular_settings import *
-
-
 from kolopadi.settings.packages.user_agent_settings import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DEBUG = False
+DEBUG = True
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/

@@ -1,9 +1,7 @@
 from kolopadi.utils.env_variable import get_env_variable
 
 # Sending email configuration
-EMAIL_HOST_USER = get_env_variable(
-    "EMAIL_HOST_USER", "XXX"
-)
+EMAIL_HOST_USER = get_env_variable("EMAIL_HOST_USER", "XXX")
 
 EMAIL_HOST_PASSWORD = get_env_variable("EMAIL_HOST_PASSWORD", "XXX")
 
@@ -24,4 +22,3 @@ SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 ADMINS = [(get_env_variable("ADMIN1", "XXX"), (get_env_variable("ADMIN2", "XXX")))]
-
