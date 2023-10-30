@@ -8,7 +8,7 @@ from .base_settings import *
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = get_env_variable("SECRET_KEY", "XXXX")
 
-ALLOWED_HOSTS.append("https://kolopadi-api.vercel.app/"
+ALLOWED_HOSTS.append("https://kolopadi-api.vercel.app/")
 
 INSTALLED_APPS.insert(5, "whitenoise.runserver_nostatic")
 # INSTALLED_APPS += [
@@ -29,11 +29,11 @@ DATABASES["default"] = dj_database_url.parse(
 #     "RECYCLE": 24 * 60 * 60,
 # }
 
-# SESSION_COOKIE_SECURE = True
-# SECURE_BROWSER_XSS_FILTER = True
-# SECURE_CONTENT_TYPE_NOSNIFF = True
-# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-# SECURE_HSTS_SECONDS = 31536000
-# SECURE_REDIRECT_EXEMPT = []
-# SECURE_SSL_REDIRECT = True
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SESSION_COOKIE_SECURE = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_SECONDS = 31536000
+SECURE_REDIRECT_EXEMPT = []
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
