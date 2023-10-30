@@ -24,8 +24,8 @@ DISABLE_SERVER_SIDE_CURSORS = True
 
 INSTALLED_APPS += [
     "debug_toolbar",
-    "crispy_forms",
-    "crispy_bootstrap3",
+    # "crispy_forms",
+    # "crispy_bootstrap3",
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap3"
