@@ -1,7 +1,7 @@
 # channels==3.0.5
 # channels-redis==3.4.0
 dj-database-url==1.2.0
-Django==3.2
+Django==4.2.3
 django-auto-prefetch==1.1.0
 # django-ckeditor==6.4.0
 django-cors-headers==4.1.0
