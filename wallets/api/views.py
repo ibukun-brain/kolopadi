@@ -197,3 +197,4 @@ class TransferAPIView(APIView):
 #             fee = response.get().get("data")["fee"]
 #             amount = account_details["amount"]
 #             self.request.session["total_charge"] = fee + float(amount)
+        # beneficiary.save()

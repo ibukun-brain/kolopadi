@@ -14,13 +14,13 @@ install: update
 # 	esac
 
 backup:
-	mkdir -p wallet/.fixtures
+	mkdir -p kolopadi/.fixtures
 	python -Xutf8 manage.py dumpdata \
 		--natural-primary \
 		--exclude=contenttypes \
 		--exclude=auth.permission \
 		--exclude=admin.logentry \
-		--exclude=user_sessions.session > $(backup_path)
+		--exclude=sessions.session > $(backup_path)
 	echo $(backup_path)
 
 env:
