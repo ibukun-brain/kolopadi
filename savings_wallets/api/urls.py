@@ -1,6 +1,10 @@
 from django.urls import path
 
-from savings_wallets.api.views import SavingsAPIView, SavingsCategoryAPIView
+from savings_wallets.api.views import (
+    SavingsCategoryAPIView,
+    SavingsDetailAPIView,
+    SavingsListAPIView,
+)
 
 app_name = "savings_wallets"
 
@@ -10,5 +14,10 @@ urlpatterns = [
         view=SavingsCategoryAPIView.as_view(),
         name="savings-category",
     ),
-    path(route="savings/", view=SavingsAPIView.as_view(), name="savings"),
+    path(route="savings/", view=SavingsListAPIView.as_view(), name="savings"),
+    path(
+        route="savings/<uuid:uid>/",
+        view=SavingsDetailAPIView.as_view(),
+        name="savings-detail"
+    ),
 ]

@@ -11,7 +11,7 @@ class SavingsCategoryAPIView(generics.ListAPIView):
     queryset = SavingsCategory.objects.all()
 
 
-class SavingsAPIView(generics.ListCreateAPIView):
+class SavingsListAPIView(generics.ListCreateAPIView):
     serializer_class = SavingsSerializer
     permission_classes = [
         permissions.IsAuthenticated,
@@ -36,3 +36,24 @@ class SavingsAPIView(generics.ListCreateAPIView):
         This endpoint returns Savings/Goals of a user
         """
         return self.create(request, *args, **kwargs)
+
+
+class SavingsDetailAPIView(generics.RetrieveAPIView):
+    serializer_class = SavingsSerializer
+    permission_classes = [
+        permissions.IsAuthenticated,
+        custom_permissions.IsSavingsOwnerOrReadOnly,
+    ]
+    lookup_field = "uid"
+
+    def get_queryset(self):
+        qs = Savings.objects.select_related("category", "user").filter(
+            user=self.request.user
+        )
+        return qs
+
+    def get(self, request, *args, **kwargs):
+        """
+        Returns a single savings/goal
+        """
+        return self.retrieve(request, args, kwargs)
