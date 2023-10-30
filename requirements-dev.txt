@@ -14,7 +14,7 @@ flake8
 # pytest-mock==3.7.0
 # django-seed==0.3.1
 # django-redisboard==8.4.0
-# django-debug-toolbar==4.1.0
+django-debug-toolbar==4.1.0
 # django-extensions==3.2.3
 # Werkzeug==2.3.7
 # pyOpenSSL==23.2.0
