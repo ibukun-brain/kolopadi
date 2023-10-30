@@ -21,7 +21,7 @@ from kolopadi.utils.validators import FileValidatorHelper
 class CustomUser(TimeBasedModel, AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = "email"
     EMAIL_FIELD = "email"
-    # REQUIRED_FIELDS = ["first_name", "last_name", "mobile_no", "referral_code"]
+    REQUIRED_FIELDS = ["first_name", "last_name", "mobile_no"]
 
     username = models.CharField(max_length=50, blank=True)
     first_name = models.CharField(max_length=50)
