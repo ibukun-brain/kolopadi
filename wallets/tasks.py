@@ -12,3 +12,13 @@ def bank_task():
         raise RequestException()
     banks = get_banks["data"]
     return create_banks(banks=banks)
+
+
+def initiate_transfer_task(
+    account_bank, account_number, amount, narration, debit_subaccount
+):
+    transfer = wallet_api.initiate_transfer(
+        account_bank, account_number, amount, narration, debit_subaccount
+    )
+    print(transfer)
+    return transfer

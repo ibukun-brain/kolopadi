@@ -11,6 +11,13 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
+from kolopadi.settings import base_settings
+
+if base_settings.DEBUG:
+    os.environ.setdefault(
+        "DJANGO_SETTINGS_MODULE", "kolopadi.settings.development_settings"
+    )
+
 os.environ.setdefault(
     "DJANGO_SETTINGS_MODULE", "kolopadi.settings.production_settings"
 )

@@ -8,7 +8,6 @@ from kolopadi.settings.packages.cors_origin_settings import *
 SECRET_KEY = "django-insecure-e1jb$w%@5d^3&lv%0@r@ccu+gkv())12a&obao#wzqtcaqrn9_"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 APPEND_SLASH = True
 

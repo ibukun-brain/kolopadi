@@ -23,4 +23,5 @@ SERVER_EMAIL = EMAIL_HOST_USER
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-ADMINS = [(get_env_variable('ADMIN1', "XXX"), (get_env_variable('ADMIN2', 'XXX')))]
+ADMINS = [(get_env_variable("ADMIN1", "XXX"), (get_env_variable("ADMIN2", "XXX")))]
+
