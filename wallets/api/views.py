@@ -72,12 +72,18 @@ class WalletAPIView(generics.RetrieveUpdateAPIView):
     def get(self, request, *args, **kwargs):
         user = request.user
         user_wallet = user.wallet
-        thread = threading.Thread(
+        thread1 = threading.Thread(
             target=user_wallet_balance_task,
             args=[user.email, user_wallet.account_reference],
             daemon=True,
         )
-        thread.start()
+        thread2 = threading.Thread(
+            target=user_wallet_transactions_task,
+            args=[user.email, user_wallet.account_reference],
+            daemon=True,
+        )
+        thread1.start()
+        thread2.start()
         return self.retrieve(request, *args, **kwargs)
 
     def get_object(self):
@@ -164,6 +170,12 @@ class TransferAPIView(APIView):
                 #             amount = account_details["amount"]
                 #             self.request.session["total_charge"] = fee + float(amount)
                 serializer.save()
+                thread = threading.Thread(
+                    target=user_wallet_transactions_task,
+                    args=[user.email, user_wallet.account_reference],
+                    daemon=True,
+                )
+                thread.start()
                 return Response(data, status=status.HTTP_201_CREATED)
             data = {
                 "amount": amount,
@@ -197,4 +209,4 @@ class TransferAPIView(APIView):
 #             fee = response.get().get("data")["fee"]
 #             amount = account_details["amount"]
 #             self.request.session["total_charge"] = fee + float(amount)
-        # beneficiary.save()
+# beneficiary.save()

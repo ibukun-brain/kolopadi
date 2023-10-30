@@ -12,22 +12,24 @@ class SavingsCategoryAdmin(admin.ModelAdmin):
 @admin.register(Savings)
 class SavingsAdmin(admin.ModelAdmin):
     list_display = [
+        "user",
         "category",
         "name",
-        "amount",
-        "target",
+        "frequency_amount",
+        "amount_to_save",
         "frequency",
-        "saving_type",
+        "type_of_savings",
         "start_date",
         "end_date",
     ]
-    list_display_links = ["name"]
-    raw_id_fields = ["category"]
-    list_select_related = ["category"]
+    readonly_fields = ["uid"]
+    list_display_links = ["user", "name"]
+    raw_id_fields = ["category", "user"]
+    list_select_related = ["category", "user"]
     search_fields = ["name"]
     list_filter = [
         ("category", admin.RelatedOnlyFieldListFilter),
         "frequency",
-        "saving_type",
+        "type_of_savings",
     ]
     date_hierarchy = "start_date"
