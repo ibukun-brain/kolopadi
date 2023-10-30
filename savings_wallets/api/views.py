@@ -10,13 +10,6 @@ class SavingsCategoryAPIView(generics.ListAPIView):
     serializer_class = SavingsCategorySerializer
     queryset = SavingsCategory.objects.all()
 
-    def list(self, request, *args, **kwargs):
-        """
-        This endpoint returns Savings Category
-        """
-        return super().list(request, *args, **kwargs)
-
-
 class SavingsAPIView(generics.ListCreateAPIView):
     serializer_class = SavingsSerializer
     permission_classes = [
