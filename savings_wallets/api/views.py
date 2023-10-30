@@ -10,6 +10,7 @@ class SavingsCategoryAPIView(generics.ListAPIView):
     serializer_class = SavingsCategorySerializer
     queryset = SavingsCategory.objects.all()
 
+
 class SavingsAPIView(generics.ListCreateAPIView):
     serializer_class = SavingsSerializer
     permission_classes = [
