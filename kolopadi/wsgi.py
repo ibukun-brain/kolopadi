@@ -18,7 +18,9 @@ if base_settings.DEBUG:
         "DJANGO_SETTINGS_MODULE", "kolopadi.settings.development_settings"
     )
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "kolopadi.settings.production_settings")
+os.environ.setdefault(
+    "DJANGO_SETTINGS_MODULE", "kolopadi.settings.production_settings"
+)
 
 application = get_wsgi_application()
 

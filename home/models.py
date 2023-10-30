@@ -38,7 +38,7 @@ class CustomUser(TimeBasedModel, AbstractBaseUser, PermissionsMixin):
     )
     referral_code = models.CharField(max_length=10, blank=True, unique=True)
     date_joined = models.DateTimeField(default=timezone.now)
-    date_of_birth = models.DateField()
+    date_of_birth = models.DateField(null=True)
     address = models.CharField(max_length=40, blank=True)
     gender = models.CharField(max_length=15, choices=Gender.choices)
     profile_pic = ResizedImageField(

@@ -13,12 +13,15 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 
 from kolopadi.settings.packages.ckeditor import *
+from kolopadi.settings.packages.cors_origin_settings import *
 from kolopadi.settings.packages.djoser_settings import *
 from kolopadi.settings.packages.redis_settings import *
 from kolopadi.settings.packages.resized_image_field import *
 from kolopadi.settings.packages.rest_framework_settings import *
 from kolopadi.settings.packages.simple_jwt_settings import *
 from kolopadi.settings.packages.spectular_settings import *
+
+
 from kolopadi.settings.packages.user_agent_settings import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -47,14 +50,14 @@ INSTALLED_APPS = [
     "savings_wallets",
     "referrals",
     "wallets",
-    "ckeditor",
+    # "ckeditor",
     "corsheaders",
     "django_filters",
     "djoser",
     "geoip2",
     "rest_framework",
     "drf_spectacular",
-    "drf_spectacular_sidecar",
+    # "drf_spectacular_sidecar",
 ]
 
 GEOIP_PATH = BASE_DIR / "geoip"
@@ -140,7 +143,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "home.CustomUser"
 
-PHONENUMBER_DB_FORMAT = "NATIONAL"
+# PHONENUMBER_DB_FORMAT = "NATIONAL"
 
 STATIC_URL = "/assets/"
 
