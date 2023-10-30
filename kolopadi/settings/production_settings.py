@@ -18,8 +18,11 @@ INSTALLED_APPS.insert(5, "whitenoise.runserver_nostatic")
 MIDDLEWARE.insert(2, "whitenoise.middleware.WhiteNoiseMiddleware")
 
 DATABASES["default"] = dj_database_url.parse(
-    get_env_variable("PROD_DATABASE_URL", f"sqlite:////{BASE_DIR.joinpath(BASE_DIR.name)}.sqlite3"), conn_max_age=600,
-    conn_health_checks=True
+    get_env_variable(
+        "PROD_DATABASE_URL", f"sqlite:////{BASE_DIR.joinpath(BASE_DIR.name)}.sqlite3"
+    ),
+    conn_max_age=600,
+    conn_health_checks=True,
 )
 
 # DATABASES["default"]["NAME"] = get_env_variable("DATABASE_NAME", "porfolio")
@@ -37,4 +40,4 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_SECONDS = 31536000
 SECURE_REDIRECT_EXEMPT = []
 SECURE_SSL_REDIRECT = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
