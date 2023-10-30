@@ -8,6 +8,11 @@ app_name = "wallets"
 urlpatterns = [
     path(route="banks/", view=wallets_views.BankListAPIView.as_view(), name="banks"),
     path(
+        route="banks/resolve-account/",
+        view=wallets_views.ResolveBankAccountDetails.as_view(),
+        name="resolve-account",
+    ),
+    path(
         route="transfer/", view=wallets_views.TransferAPIView.as_view(), name="wallet"
     ),
     path(

@@ -1,6 +1,3 @@
-from django.conf import settings
-
-User = settings.AUTH_USER_MODEL
 DJOSER = {
     "USER_ID_FIELD": "uid",
     "LOGIN_FIELD": "email",

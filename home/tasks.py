@@ -59,12 +59,12 @@ def create_user_wallet_after_signup_task(
     )
 
 
-def user_wallet_balance_task(self, email, account_reference):
+def user_wallet_balance_task(email, account_reference):
     """Run background task to fetch user wallet balance"""
     retrieve_wallet_balance = wallet_api.retrieve_wallet_balance(
         account_reference=account_reference
     )
-    print(retrieve_wallet_balance)
+    # print(retrieve_wallet_balance)
     if retrieve_wallet_balance["status"] == "error":
         raise RequestException()
 

@@ -8,7 +8,6 @@ from kolopadi.settings.packages.cors_origin_settings import *
 SECRET_KEY = "django-insecure-e1jb$w%@5d^3&lv%0@r@ccu+gkv())12a&obao#wzqtcaqrn9_"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 APPEND_SLASH = True
 
@@ -41,17 +40,6 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-STATIC_URL = "/assets/"
-
-STATICFILES_DIRS = [
-    BASE_DIR / "assets/",
-]
-
-STATIC_ROOT = BASE_DIR / "static_root"
-
-MEDIA_URL = "/uploads/"
-
-MEDIA_ROOT = get_env_variable("MEDIA_ROOT", BASE_DIR / "media")
 
 LOGGING = {
     "version": 1,

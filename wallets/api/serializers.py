@@ -9,6 +9,14 @@ class BankSerializer(serializers.ModelSerializer):
         fields = ("name", "bank_code")
 
 
+class BankAccountDetailSerializer(serializers.Serializer):
+    bank_code = serializers.CharField(max_length=50)
+    account_number = serializers.CharField(max_length=10)
+
+    def create(self, validated_data):
+        return validated_data
+
+
 class UserWalletSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField()
 
@@ -73,9 +81,12 @@ class WalletTransactionSerializer(serializers.ModelSerializer):
 
 
 class TransferSerializer(serializers.Serializer):
-    amount = serializers.DecimalField(decimal_places=2, max_digits=11)
-    narration = serializers.CharField(max_length=100, allow_blank=True)
+    amount = serializers.DecimalField(decimal_places=2, max_digits=11, min_value=10)
+    narration = serializers.CharField(max_length=100, required=False)
     add_to_beneficiary = serializers.BooleanField(default=False)
-    account_name = serializers.CharField(max_length=100)
     account_number = serializers.CharField(max_length=10)
     bank_code = serializers.CharField(max_length=50)
+
+    def create(self, validated_data):
+        # request = self.context.get("request")
+        return validated_data

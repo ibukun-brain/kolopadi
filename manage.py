@@ -3,12 +3,21 @@
 import os
 import sys
 
+from kolopadi.settings import base_settings
+
 
 def main():
     """Run administrative tasks."""
+
+    if base_settings.DEBUG:
+        os.environ.setdefault(
+            "DJANGO_SETTINGS_MODULE", "kolopadi.settings.development_settings"
+        )
+
     os.environ.setdefault(
-        "DJANGO_SETTINGS_MODULE", "kolopadi.settings.development_settings"
+        "DJANGO_SETTINGS_MODULE", "kolopadi.settings.production_settings"
     )
+
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
