@@ -1,6 +1,7 @@
 from django.urls import path
 
 from loans.api.views import (
+    AllLoanListingListAPIView,
     BorrowerAssetListCreateAPIView,
     BorrowerListCreateAPIView,
     BorrowerRetrieveUpdateAPIView,
@@ -14,11 +15,14 @@ from loans.api.views import (
 app_name = "loans"
 
 urlpatterns = [
+    path("loans/listings/", AllLoanListingListAPIView.as_view(), name="loan-listings"),
     path(
-        "loans/listings/", LoanListingListCreateAPIView.as_view(), name="loan-listing"
+        "loans/my-listings/",
+        LoanListingListCreateAPIView.as_view(),
+        name="my-loan-listings",
     ),
     path(
-        "loans/listings/<uuid:uid>/",
+        "loans/my-listings/<uuid:uid>/",
         LoanListingRetrieveUpdateDeleteAPIView.as_view(),
         name="loan-listing-detail",
     ),

@@ -27,4 +27,4 @@ class LenderWalletAdmin(admin.ModelAdmin):
 
 @admin.register(LoanListing)
 class LoanListingAdmin(admin.ModelAdmin):
-    pass
+    list_display = ["title", "borrower", "loan_amount", "interest_rate"]
