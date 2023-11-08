@@ -4,6 +4,7 @@ from savings_wallets.api.views import (
     SavingsCategoryAPIView,
     SavingsDetailAPIView,
     SavingsListAPIView,
+    SavingsWithdrawalAPIView,
 )
 
 app_name = "savings_wallets"
@@ -18,6 +19,11 @@ urlpatterns = [
     path(
         route="savings/<uuid:uid>/",
         view=SavingsDetailAPIView.as_view(),
-        name="savings-detail"
+        name="savings-detail",
+    ),
+    path(
+        route="savings/<uuid:uid>/withdraw/",
+        view=SavingsWithdrawalAPIView.as_view(),
+        name="savings-withdrawal",
     ),
 ]

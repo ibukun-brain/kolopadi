@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from savings_wallets.models import Savings, SavingsCategory
+from savings_wallets.models import Savings, SavingsCategory, SavingsWallet
 
 
 @admin.register(SavingsCategory)
@@ -33,3 +33,10 @@ class SavingsAdmin(admin.ModelAdmin):
         "type_of_savings",
     ]
     date_hierarchy = "start_date"
+
+
+@admin.register(SavingsWallet)
+class SavingsWalletAdmin(admin.ModelAdmin):
+    list_display = ["user", "balance"]
+    raw_id_fields = ["user"]
+    list_select_related = ["user"]
