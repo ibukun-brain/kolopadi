@@ -39,7 +39,6 @@ class CustomUser(TimeBasedModel, AbstractBaseUser, PermissionsMixin):
     referral_code = models.CharField(max_length=10, blank=True, unique=True)
     date_joined = models.DateTimeField(default=timezone.now)
     date_of_birth = models.DateField(null=True)
-    address = models.CharField(max_length=40, blank=True)
     gender = models.CharField(max_length=15, choices=Gender.choices)
     profile_pic = ResizedImageField(
         upload_to=MediaHelper.get_image_upload_path,
@@ -85,6 +84,20 @@ class CustomUser(TimeBasedModel, AbstractBaseUser, PermissionsMixin):
 
         return f"http://localhost:8000{settings.STATIC_URL}avatar/placeholder.jpg"
 
+    @property
+    def is_lender(self):
+        """
+        Return true if user is a registered lender
+        """
+        return hasattr(self, "lender")
+
+    @property
+    def is_borrower(self):
+        """
+        Return true if user is a registered borrower
+        """
+        return hasattr(self, "borrower")
+
     def __str__(self):
         return self.get_full_name() or self.email
 
@@ -104,6 +117,7 @@ class IdentityInformation(TimeBasedModel):
         blank=True,
         null=True,
     )
+    bvn = models.CharField(max_length=11)
     id_number = models.CharField(max_length=20, verbose_name="ID number")
     id_document = models.ImageField(
         upload_to=MediaHelper.get_image_upload_path,
@@ -117,6 +131,7 @@ class IdentityInformation(TimeBasedModel):
         max_length=50, choices=Status.choices, default=Status.Pending
     )
     feedback = models.TextField(blank=True)
+    verified = models.DateField(null=True)
 
     def __str__(self):
         return f"{self.user} identity information"

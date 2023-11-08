@@ -26,6 +26,7 @@ INSTALLED_APPS += [
     "debug_toolbar",
     # "crispy_forms",
     # "crispy_bootstrap3",
+    "drf_spectacular_sidecar",
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap3"
@@ -61,3 +62,10 @@ LOGGING = {
         "propagate": True,
     },
 }
+
+SPECTACULAR_SETTINGS.update(
+    {
+        "SWAGGER_UI_DIST": "SIDECAR",
+        "SWAGGER_UI_FAVICON_HREF": "SIDECAR",
+    }
+)

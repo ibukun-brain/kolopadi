@@ -25,7 +25,6 @@ class UserAdmin(DefaultUserAdmin):
                     "email",
                     "mobile_no",
                     "gender",
-                    "address",
                     "date_of_birth",
                     "profile_pic",
                     "referral_code",
@@ -104,13 +103,11 @@ class IdentityInformationAdmin(admin.ModelAdmin):
         "user",
         "identity_type",
         "expiry_date",
-        "id_number",
-        "id_has_expired",
         "status",
-        "is_verified",
+        "verified",
     ]
     search_fields = [
-        "identity_type",
+        "bvn" "identity_type",
         "id_number",
         "user__first_name",
         "user__last_name",

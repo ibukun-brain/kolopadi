@@ -5,6 +5,7 @@ from django.urls import include, path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 urlpatterns = [
+    path("api/", include("loans.api.urls", namespace="loans")),
     path("api/", include("referrals.api.urls", namespace="referrals")),
     path("api/", include("savings_wallets.api.urls", namespace="savings_wallets")),
     path("api/", include("wallets.urls", namespace="wallets")),

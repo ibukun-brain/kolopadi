@@ -115,14 +115,7 @@ class CustomUserSerializer(UserSerializer):
             },
         }
 
-
-# class UserAddressBookSerializer(serializers.ModelSerializer):
-#     user = CustomUserCreateSerializer()
-
-#     class Meta:
-#         model = AddressBook
-#         fields = (
-#             'user', 'phone_no', 'additional_phone_no',
-#             'delivery_address', 'default_address',
-#             'state', 'city', 'town'
-#         )
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        _ = data.pop("profile_pic")
+        return data
