@@ -1,6 +1,5 @@
 from rest_framework import generics, permissions
 from rest_framework.response import Response
-
 from rest_framework.serializers import ValidationError
 
 from loans.api.custom_permissions import IsLenderOrReadOnly, IsLoanBorrowerOrReadOnly
@@ -45,9 +44,7 @@ class LenderRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
         try:
             qs = self.request.user.lender
         except Lender.DoesNotExist:
-            return Response(
-                {"error": "This user is not a lender"}, status=400
-            )
+            return Response({"error": "This user is not a lender"}, status=400)
         if not qs.verified:
             raise ValidationError(
                 {"detail": "Your account is under verification"}, code=200
@@ -89,10 +86,7 @@ class BorrowerRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
         try:
             qs = self.request.user.borrower
         except Borrower.DoesNotExist:
-            return Response(
-                {"error": "This user is not a lender"},
-                status=400
-            )
+            return Response({"error": "This user is not a lender"}, status=400)
         if not qs.verified:
             raise ValidationError(
                 {"detail": "Your account is under verification"}, code=200
@@ -127,6 +121,26 @@ class BorrowerAssetListCreateAPIView(generics.ListCreateAPIView):
         return self.create(request, *args, **kwargs)
 
 
+class AllLoanListingListAPIView(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = LoanListingSerializer
+    filterset_fields = ["loan_amount", "interest_rate", "loan_tenure_in_months"]
+
+    def get_queryset(self):
+        qs = LoanListing.objects.select_related("borrower").order_by(
+            "-loan_amount",
+            "-created_at",
+            "-updated_at",
+        )
+        return qs
+
+    def get(self, request, *args, **kwargs):
+        """
+        API endpoint for all loans.
+        """
+        return self.list(request, *args, **kwargs)
+
+
 class LoanListingListCreateAPIView(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = LoanListingSerializer
@@ -147,7 +161,7 @@ class LoanListingListCreateAPIView(generics.ListCreateAPIView):
 
     def get(self, request, *args, **kwargs):
         """
-        API endpoint for all loans
+        API endpoint for all loans associated to a specific borrower
         """
         return self.list(request, *args, **kwargs)
 

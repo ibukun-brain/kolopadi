@@ -11,9 +11,9 @@ class Borrower(TimeBasedModel):
     user = auto_prefetch.OneToOneField("home.CustomUser", on_delete=models.CASCADE)
     username = models.CharField(max_length=50)
     bio = models.TextField(max_length=100, blank=True)
-    verified = models.DateField(null=True, blank=True)
+    verified = models.DateField(auto_now_add=True)
     address = models.CharField(max_length=50)
-    employement_type = models.CharField(max_length=50)
+    employment_type = models.CharField(max_length=50)
     profession_type = models.CharField(max_length=50)
 
     def __str__(self):
@@ -65,7 +65,7 @@ class Lender(TimeBasedModel):
     )
     username = models.CharField(max_length=50)
     bio = models.TextField(max_length=100, blank=True)
-    verified = models.DateField(null=True, blank=True)
+    verified = models.DateField(auto_now_add=True)
     address = models.CharField(max_length=50)
 
     def __str__(self):
@@ -88,7 +88,7 @@ class LoanListing(TimeBasedModel):
     uid = models.UUIDField(default=uuid.uuid4)
     borrower = auto_prefetch.ForeignKey(Borrower, on_delete=models.CASCADE)
     loan_amount = models.DecimalField(max_digits=10, decimal_places=2)
-    interest_rate = models.DecimalField(max_digits=5, decimal_places=2)
+    interest_rate = models.DecimalField(max_digits=10, decimal_places=2)
     loan_tenure_in_months = models.PositiveIntegerField(default=1)
     reason_for_loan = models.TextField()
     title = models.CharField(max_length=100)

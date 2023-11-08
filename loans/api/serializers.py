@@ -43,6 +43,8 @@ class BorrowerSerializer(serializers.ModelSerializer):
             "bio",
             "verified",
             "address",
+            "employment_type",
+            "profession_type",
         ]
 
         extra_kwargs = {
