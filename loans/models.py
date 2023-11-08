@@ -125,7 +125,7 @@ class LoanListingFulfillment(TimeBasedModel):
     disburse_date_to_borrower = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
-        self.release_date_from_lender
+        return self.release_date_from_lender
 
 
 class PaymentMethod(TimeBasedModel):

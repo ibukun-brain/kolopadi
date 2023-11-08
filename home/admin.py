@@ -107,7 +107,8 @@ class IdentityInformationAdmin(admin.ModelAdmin):
         "verified",
     ]
     search_fields = [
-        "bvn" "identity_type",
+        "bvn",
+        "identity_type",
         "id_number",
         "user__first_name",
         "user__last_name",

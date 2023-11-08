@@ -1,4 +1,7 @@
-from rest_framework import generics, permissions, serializers
+from rest_framework import generics, permissions
+from rest_framework.response import Response
+
+from rest_framework.serializers import ValidationError
 
 from loans.api.custom_permissions import IsLenderOrReadOnly, IsLoanBorrowerOrReadOnly
 from loans.api.serializers import (
@@ -42,11 +45,11 @@ class LenderRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
         try:
             qs = self.request.user.lender
         except Lender.DoesNotExist:
-            raise serializers.ValidationError(
-                {"error": "This user is not a lender"}, code=400
+            return Response(
+                {"error": "This user is not a lender"}, status=400
             )
         if not qs.verified:
-            raise serializers.ValidationError(
+            raise ValidationError(
                 {"detail": "Your account is under verification"}, code=200
             )
         return qs
@@ -86,11 +89,12 @@ class BorrowerRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
         try:
             qs = self.request.user.borrower
         except Borrower.DoesNotExist:
-            raise serializers.ValidationError(
-                {"error": "This user is not a borrower"}, code=400
+            return Response(
+                {"error": "This user is not a lender"},
+                status=400
             )
         if not qs.verified:
-            raise serializers.ValidationError(
+            raise ValidationError(
                 {"detail": "Your account is under verification"}, code=200
             )
         return qs
